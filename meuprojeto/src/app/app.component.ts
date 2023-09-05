@@ -7,9 +7,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   nome = 'Mundo';
-  idade = 11;
+ 
+  adicionar() {
+    console.log(`Adicionando ${this.nome}`)
 
-  getIdade() {
-    return this.idade;
+    const numero = Math.round(Math.random() * 100);
+
+    this.nome = `Fabricio ${numero}`
+  }
+
+  alterarNome(event: any) {
+    this.nome = event.target.value
   }
 }
