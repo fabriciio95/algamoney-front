@@ -20,27 +20,29 @@ label {
   margin: 0.5em;
 }
 
-.col-valor-header {
-  width: 120px;
-  text-align: center !important;
-}
+@media (min-width: 40em) {
+  .col-valor-header {
+    width: 120px;
+    text-align: center !important;
+  }
 
-.col-valor-content {
-  text-align: right !important ;
-}
+  .col-valor-content {
+    text-align: right !important ;
+  }
 
-.col-data-header {
-  width: 120px;
-}
+  .col-data-header {
+    width: 120px;
+  }
 
-.col-data-content {
-  text-align: center !important;
-}
+  .col-data-content {
+    text-align: center !important;
+  }
 
-.col-acoes {
-  width: 120 px
-}
+  .col-acoes {
+    width: 120 px
+  }
 
-.col-acoes > a {
-  margin-right: 5px;
+  .col-acoes > a {
+    margin-right: 5px;
+  }
 }
