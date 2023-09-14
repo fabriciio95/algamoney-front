@@ -20,7 +20,7 @@ label {
   margin: 0.5em;
 }
 
-@media (min-width: 40em) {
+@media (min-width: 40em), (max-width: 960px) {
   .col-valor-header {
     width: 120px;
     text-align: center !important;
@@ -38,11 +38,20 @@ label {
     text-align: center !important;
   }
 
-  .col-acoes {
-    width: 120 px
+  .col-acoes-header {
+    width: 115px;
   }
 
-  .col-acoes > a {
+  .col-acoes {
+    width: 120px;
+    justify-content: flex-end !important;
+  }
+
+  .col-acoes a {
     margin-right: 5px;
+  }
+
+  .col-acoes button {
+    margin: 1px;
   }
 }

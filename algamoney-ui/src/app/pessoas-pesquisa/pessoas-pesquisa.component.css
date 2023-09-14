@@ -1,0 +1,8 @@
+.col-status-data {
+  color: black;
+  text-decoration: none;
+}
+
+.col-status-data:hover {
+text-decoration: underline;
+}
