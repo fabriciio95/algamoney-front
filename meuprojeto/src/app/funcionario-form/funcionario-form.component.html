@@ -11,7 +11,8 @@
   <input type="text" class="form-control"
         [(ngModel)]="nome"
         (focus)="adicionado = false"
-        [appCampoColorido]="'blue'">
+        [appCampoColorido]="'blue'"
+        #campo="campoColorido">
        <!-- appCampoColorido cor="corDoCampo"> -->
 
 
@@ -19,3 +20,6 @@
 
 <button type="button" class="btn btn-primary"
   (click)="adicionar()" [disabled]="nome.length == 0">Adicionar</button>
+
+  <button class="btn btn-info" (click)="campo.colorir()">Colorir</button>
+  <button class="btn btn-info" (click)="campo.descolorir()">Descolorir</button>
