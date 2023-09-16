@@ -11,7 +11,10 @@
   <input type="text" class="form-control"
         [(ngModel)]="nome"
         (focus)="adicionado = false"
-        appCampoColorido>
+        [appCampoColorido]="'blue'">
+       <!-- appCampoColorido cor="corDoCampo"> -->
+
+
 </div>
 
 <button type="button" class="btn btn-primary"

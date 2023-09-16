@@ -11,8 +11,8 @@ export class FuncionarioFormComponent {
   nome = '';
   adicionado: Boolean = false;
   @Output('criado') funcionarioAdicionado = new EventEmitter();
- 
- 
+
+
   adicionar() {
     this.adicionado = true;
 
@@ -23,5 +23,5 @@ export class FuncionarioFormComponent {
 
     this.funcionarioAdicionado.emit(funcionario);
   }
-  
+
 }
