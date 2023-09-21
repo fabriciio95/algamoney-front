@@ -9,7 +9,7 @@ import { NgForm } from '@angular/forms';
 export class AulaFormularioComponent  {
 
   salvar(form: NgForm) {
-    console.log(`Salvando bro ${form}`)
+    console.log(`Salvando bro ${form.value.nome}`)
   }
 
 }
