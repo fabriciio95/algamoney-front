@@ -9,6 +9,7 @@ import { FuncionarioCardComponent } from './funcionario-card/funcionario-card.co
 import { FuncionarioFormComponent } from './funcionario-form/funcionario-form.component';
 import { CampoColoridoDirective } from './campo-colorido.directive';
 import { AulaPipeComponentComponent } from './aula-pipe-component/aula-pipe-component.component';
+import { AulaFormularioComponent } from './aula-formulario/aula-formulario.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AulaPipeComponentComponent } from './aula-pipe-component/aula-pipe-comp
     FuncionarioCardComponent,
     FuncionarioFormComponent,
     CampoColoridoDirective,
-    AulaPipeComponentComponent
+    AulaPipeComponentComponent,
+    AulaFormularioComponent
   ],
   imports: [
     BrowserModule,
