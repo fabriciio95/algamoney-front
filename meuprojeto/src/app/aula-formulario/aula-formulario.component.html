@@ -1,7 +1,17 @@
 <div class="container">
   {{ cliente | json}}
+  <br>
+  {{usuarioForm.invalid}}
+  <br>
   {{ usuarioForm.valid}}
-  <form #usuarioForm="ngForm" (ngSubmit)="salvar(usuarioForm)">
+
+  <div class="alert alert-danger" *ngIf="usuarioForm.invalid">
+
+    Preencha todos os campos corretamente
+
+  </div>
+
+  <form autocomplete="off" #usuarioForm="ngForm" (ngSubmit)="salvar(usuarioForm)">
      <div class="form-group">
         <label class="form-control-label">Nome</label>
         <input type="text" class="form-control" name="nome" [(ngModel)]="cliente.nome" required minlength="2">
