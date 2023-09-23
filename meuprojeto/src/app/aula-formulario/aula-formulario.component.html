@@ -13,30 +13,30 @@
 
   <form autocomplete="off" #usuarioForm="ngForm" (ngSubmit)="salvar(usuarioForm)">
      <div class="form-group">
-        <label class="form-control-label">Nome</label>
-        <input type="text" class="form-control" name="nome" [(ngModel)]="cliente.nome" required minlength="2" #nome="ngModel">
+        <label [ngStyle]="{ 'color' :  nome.invalid && nome.touched ? 'red' : ''}">Nome</label>
+        <input type="text" class="form-control" [class.is-invalid]="nome.invalid && nome.touched" name="nome" [(ngModel)]="cliente.nome" required minlength="2" #nome="ngModel">
 
-        <div *ngIf="nome.hasError('required') && nome.touched">Informe um nome</div>
-        <div *ngIf="nome.hasError('minlength') && nome.touched">O nome deve ser completo</div>
+        <div *ngIf="nome.hasError('required') && nome.touched" class="invalid-feedback">Informe um nome</div>
+        <div *ngIf="nome.hasError('minlength') && nome.touched" class="invalid-feedback">O nome deve ser completo</div>
      </div>
 
      <div class="form-group">
-      <label class="form-control-label">E-mail</label>
-      <input type="text" class="form-control" name="email" [(ngModel)]="cliente.email"  required email #email="ngModel">
+      <label [ngStyle]="{ 'color' :  email.invalid && email.touched ? 'red' : ''}">E-mail</label>
+      <input type="text" class="form-control" name="email" [(ngModel)]="cliente.email"  required email #email="ngModel" [class.is-invalid]="email.invalid && email.touched">
 
-      <div *ngIf="email.invalid && email.touched">Informe um e-mail válido</div>
+      <div *ngIf="email.invalid && email.touched" class="invalid-feedback">Informe um e-mail válido</div>
      </div>
 
      <div class="form-group">
-      <label class="form-control-label">Profissão</label>
-      <select class="form-control" name="profissao" [(ngModel)]="cliente.profissao" required #profissao="ngModel">
+      <label [ngStyle]="{ 'color' :  profissao.invalid && profissao.touched ? 'red' : ''}">Profissão</label>
+      <select class="form-control" name="profissao" [(ngModel)]="cliente.profissao" required #profissao="ngModel" [class.is-invalid]="profissao.invalid && profissao.touched">
         <option value="">Selecione</option>
         <option *ngFor="let profissao of profissoes" [value]="profissao">
           {{ profissao }}
         </option>
       </select>
 
-      <div *ngIf="profissao.invalid && profissao.touched">Informe uma profissão</div>
+      <div *ngIf="profissao.invalid && profissao.touched" class="invalid-feedback">Informe uma profissão</div>
     </div>
 
     <button type="submit" class="btn btn-primary"
