@@ -5,7 +5,7 @@ import { NgForm } from '@angular/forms';
 class Cliente {
   nome?: string;
   email?: string;
-  profissao?: string;
+  profissao: string = '';
 }
 @Component({
   selector: 'app-aula-formulario',
@@ -22,6 +22,8 @@ export class AulaFormularioComponent  {
     console.log(`${this.profissao}`)
     console.log(`Salvando bro ${form.value.nome}`)
     console.log(`${this.cliente}`)
+
+    form.reset({ profissao: ''});
   }
 
 }
