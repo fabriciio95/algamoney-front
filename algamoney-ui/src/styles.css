@@ -20,6 +20,14 @@ label {
   margin: 0.5em;
 }
 
+.p-button {
+  margin-right: .25em
+}
+
+a {
+  text-decoration: none;
+}
+
 @media (min-width: 40em), (max-width: 960px) {
   .col-valor-header {
     width: 120px;
