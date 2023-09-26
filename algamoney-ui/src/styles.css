@@ -25,7 +25,12 @@ label {
 }
 
 a {
+  color: #337ab7;
   text-decoration: none;
+}
+
+a:hover, a:focus {
+  text-decoration: underline;
 }
 
 @media (min-width: 40em), (max-width: 960px) {
