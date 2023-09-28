@@ -7,6 +7,7 @@ import { ButtonModule} from 'primeng/button';
 import { TableModule} from 'primeng/table';
 import { TooltipModule} from 'primeng/tooltip';
 import {InputTextareaModule} from 'primeng/inputtextarea';
+import { InputMaskModule } from 'primeng/inputmask'
 
 
 import { AppComponent } from './app.component';
@@ -40,7 +41,8 @@ import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.compo
     BrowserAnimationsModule,
     SelectButtonModule,
     DropdownModule,
-    InputNumberModule
+    InputNumberModule,
+    InputMaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]
