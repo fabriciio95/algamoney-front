@@ -8,6 +8,7 @@ import { TableModule} from 'primeng/table';
 import { TooltipModule} from 'primeng/tooltip';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import { InputMaskModule } from 'primeng/inputmask'
+import { MessageModule} from 'primeng/message'
 
 
 import { AppComponent } from './app.component';
@@ -20,6 +21,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.compo
     SelectButtonModule,
     DropdownModule,
     InputNumberModule,
-    InputMaskModule
+    InputMaskModule,
+    FormsModule,
+    MessageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
