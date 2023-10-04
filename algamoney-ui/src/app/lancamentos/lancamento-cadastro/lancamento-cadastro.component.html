@@ -24,7 +24,7 @@
                         [required]="true" #vencimento="ngModel">
             </p-calendar>
 
-           <!-- <app-message [control]="vencimento" error="required" text="Informe uma data de vencimento"></app-message> -->
+           <app-message [control]="vencimento" error="required" text="Informe uma data de vencimento"></app-message>
         </div>
 
         <div class="col-6 md:col-3 p-fluid">
@@ -38,9 +38,9 @@
 
           <input pInputText type="text" name="descricao" ngModel #descricao="ngModel" required minlength="5">
 
-          <!-- <app-message [control]="descricao" error="required" text="Informe uma descrição"></app-message>
+          <app-message [control]="descricao" error="required" text="Informe uma descrição"></app-message>
 
-            <app-message [control]="descricao" error="minlength" text="Mínimo de {{ descricao.errors?.['minlength']?.requiredLength }} caracteres. Você digitou apenas {{ descricao.errors?.['minlength']?.actualLength }}"></app-message> -->
+            <app-message [control]="descricao" error="minlength" text="Mínimo de {{ descricao.errors?.['minlength']?.requiredLength }} caracteres. Você digitou apenas {{ descricao.errors?.['minlength']?.actualLength }}"></app-message>
         </div>
 
         <div class="col-12 md:col-3 p-fluid">
@@ -48,7 +48,7 @@
 
           <p-inputNumber mode="currency" currency="BRL" placeholder="0,00" locale="pt-BR"  name="valor" ngModel [required]="true" #valor="ngModel" ></p-inputNumber>
 
-         <!-- <app-message [control]="valor" error="required" text="Informe um valor"></app-message> -->
+          <app-message [control]="valor" error="required" text="Informe um valor"></app-message>
         </div>
         <div class="col-12 md:col-6 p-fluid">
           <label>Categoria</label>
