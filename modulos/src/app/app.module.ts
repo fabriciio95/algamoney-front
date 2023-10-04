@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BotoesModule } from './botoes/botoes.module';
+import { NavegacaoModule } from './navegacao/navegacao.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,7 @@ import { BotoesModule } from './botoes/botoes.module';
   ],
   imports: [
     BrowserModule,
-    BotoesModule
+    NavegacaoModule
   ],
   providers: [],
   bootstrap: [AppComponent]
