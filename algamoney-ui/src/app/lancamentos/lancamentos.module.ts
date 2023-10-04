@@ -7,7 +7,7 @@ import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-ca
 import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 
-import { MessageModule } from 'primeng/message';
+
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule} from 'primeng/button';
 import { TableModule} from 'primeng/table';
@@ -30,7 +30,6 @@ import { InputNumberModule } from 'primeng/inputnumber';
   imports: [
     CommonModule,
     FormsModule,
-    MessageModule,
     InputTextModule,
     ButtonModule,
     TableModule,
