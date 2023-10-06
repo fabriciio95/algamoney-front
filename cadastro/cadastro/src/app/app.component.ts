@@ -10,16 +10,9 @@ export class AppComponent implements OnInit {
 
   funcionarios: any[] = [];
 
-  funcionarioService: FuncionarioService;
-
-  constructor() {
-    this.funcionarioService = new FuncionarioService();
-  }
+  constructor(private funcionarioService: FuncionarioService) { }
 
   ngOnInit(): void {
     this.funcionarios = this.funcionarioService.consultar();
   }
-
-
-
 }
