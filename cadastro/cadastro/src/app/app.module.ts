@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { FuncionarioFormComponent } from './funcionario-form/funcionario-form.component';
 import { FuncionarioCardComponent } from './funcionario-card/funcionario-card.component';
 import { FormsModule } from '@angular/forms';
-import { FuncionarioService } from './funcionario.service';
+import { FuncionarioAbreviadoService, FuncionarioService } from './funcionario.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { FuncionarioService } from './funcionario.service';
     FormsModule
   ],
   providers: [
-    FuncionarioService
+    { provide: FuncionarioService, useClass: FuncionarioAbreviadoService }
   ],
   bootstrap: [AppComponent]
 })
