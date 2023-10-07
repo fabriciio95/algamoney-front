@@ -1,3 +1,4 @@
+import { LogService } from './../log.service';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FuncionarioService } from '../funcionario.service';
 
@@ -9,9 +10,11 @@ import { FuncionarioService } from '../funcionario.service';
 export class FuncionarioFormComponent {
 
 
-  constructor(private funcionarioService: FuncionarioService) {}
+  constructor(private funcionarioService: FuncionarioService,
+              private logService: LogService) {}
 
   adicionar(nome: string) {
+      this.logService.log(`Adicionando ${nome}`);
       this.funcionarioService.adicionar(nome);
   }
 
