@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Cidade } from './app.component';
 
 
 @Injectable({
@@ -18,5 +17,11 @@ export class CidadeService {
 
   adicionar(cidade: any): Promise<any> {
       return this.http.post(`${this.urlBase}/cidades`, cidade).toPromise();
+  }
+
+  excluir(id: number): Promise<unknown> {
+     return this.http.delete(`${this.urlBase}/cidades/${id}`)
+      .toPromise()
+      .then(() => null);
   }
 }

@@ -1,28 +1,16 @@
 {
   "cidades": [
     {
-      "nome": "São Paulo",
-      "id": 2
-    },
-    {
-      "nome": "Fortaleza",
-      "id": 3
-    },
-    {
-      "nome": "Osasco",
-      "id": 4
-    },
-    {
-      "nome": "Carapicuiba",
-      "id": 5
-    },
-    {
       "nome": "Santana de Parnaíba",
       "id": 6
     },
     {
-      "nome": "Barueri",
+      "nome": "Osasco",
       "id": 7
+    },
+    {
+      "nome": "Barueri",
+      "id": 8
     }
   ]
 }
