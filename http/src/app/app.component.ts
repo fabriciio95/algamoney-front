@@ -46,7 +46,7 @@ export class AppComponent implements OnInit{
        .then(() => {
           alert('Cidade atualizada com sucesso!');
           this.consultar();
-       }) 
+       }).catch((erro) => alert(erro));
     
   }
   
