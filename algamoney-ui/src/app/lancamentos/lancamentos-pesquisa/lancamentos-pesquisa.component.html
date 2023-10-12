@@ -14,10 +14,9 @@
 
         <div class="col-12">
           <label style="display: block;">Vencimento</label>
-          <input pInputText type="text" style="width: 95px;">
-
+          <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '100px'}" name="vencimentoInicio" [(ngModel)]="dataVencimentoInicio"></p-calendar>
           <label>até</label>
-          <input pInputText type="text" style="width: 95px;">
+          <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '100px'}" name="vencimentoFim" [(ngModel)]="dataVencimentoFim"></p-calendar>
         </div>
 
         <div class="col-12">
@@ -68,6 +67,13 @@
               <td class="col-acoes">
                 <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
                 <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="6">
+                 Nenhum lançamento encontrado
               </td>
             </tr>
           </ng-template>
