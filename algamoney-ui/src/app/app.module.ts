@@ -6,14 +6,20 @@ import { AppComponent } from './app.component';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { PessoasModule } from './pessoas/pessoas.module';
 import { CoreModule } from './core/core.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { LancamentoService } from './lancamentos/lancamento.service';
 import { PessoaService } from './pessoas/pessoa.service';
 
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog'
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+    return new TranslateHttpLoader(http);
+}
 @NgModule({
   declarations: [
     AppComponent
@@ -25,13 +31,21 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog'
     CoreModule,
     HttpClientModule,
     ToastModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     LancamentoService,
     PessoaService,
     MessageService,
-    ConfirmationService
+    ConfirmationService,
+    TranslateService
   ],
   bootstrap: [AppComponent]
 })
