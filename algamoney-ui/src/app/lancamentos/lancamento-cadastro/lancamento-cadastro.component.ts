@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { CategoriaService } from 'src/app/categorias/categoria.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
+import { Lancamento } from 'src/app/core/model';
 import { PessoaService } from 'src/app/pessoas/pessoa.service';
 
 @Component({
@@ -16,8 +18,8 @@ export class LancamentoCadastroComponent implements OnInit {
   ]
 
   categorias = [];
-
   pessoas = [];
+  lancamento = new Lancamento();
 
   constructor(private categoriaService: CategoriaService,
               private pessoaService: PessoaService,
@@ -26,6 +28,10 @@ export class LancamentoCadastroComponent implements OnInit {
   ngOnInit(): void {
     this.carregarCategorias();
     this.carregarPessoas();
+  }
+
+  salvar(form: NgForm) {
+    console.log(this.lancamento);
   }
 
 
