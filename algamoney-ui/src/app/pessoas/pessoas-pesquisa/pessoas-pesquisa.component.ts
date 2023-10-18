@@ -54,5 +54,15 @@ export class PessoasPesquisaComponent {
          }).catch(error => this.errorHandler.handle(error));
   }
 
+  alterarStatus(pessoa: any) {
+    const novoStatus = !pessoa.ativo;
+    this.pessoaService.alterarStatus(pessoa.codigo, novoStatus )
+        .then(() =>  {
+          pessoa.ativo = novoStatus;
+
+          this.toastService.add({ severity: 'success', detail: `Pessoa ${novoStatus ? 'ativada' : 'desativada'} com sucesso!`})
+        }).catch(error => this.errorHandler.handle(error));
+  }
+
 
 }

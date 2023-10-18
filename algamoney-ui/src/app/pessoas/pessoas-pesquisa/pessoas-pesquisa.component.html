@@ -27,7 +27,7 @@
             <th>Nome</th>
             <th>Cidade</th>
             <th>Estado</th>
-            <th>Status</th>
+            <th class="col-data-header">Status</th>
             <th class="col-acoes-header"></th>
           </tr>
         </ng-template>
@@ -40,15 +40,15 @@
             </td>
             <td>
               <span class="p-column-title">Cidade</span>
-              {{ pessoa.cidade }}
+              {{ pessoa.endereco.cidade }}
             </td>
             <td>
               <span class="p-column-title">Estado</span>
-              {{ pessoa.estado }}
+              {{ pessoa.endereco.estado }}
             </td>
             <td>
-              <span class="p-column-title">Status</span>
-              <a href="#" [pTooltip]="pessoa.ativo ? 'Desativar' : 'Ativar'" tooltipPosition="top" class="col-status-data">
+              <span class="p-column-title col-data-content">Status</span>
+              <a href="javascript:;" [pTooltip]="pessoa.ativo ? 'Desativar' : 'Ativar'" tooltipPosition="top" class="col-status-data" (click)="alterarStatus(pessoa)">
                 {{ pessoa.ativo ? 'Ativo' : 'Inativo'}}
               </a>
             </td>

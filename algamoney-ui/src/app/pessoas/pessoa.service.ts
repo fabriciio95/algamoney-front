@@ -57,4 +57,12 @@ export class PessoaService {
 
     return this.http.delete<void>(`${this.urlBase}/${codigo}`, { headers }).toPromise();
   }
+
+  alterarStatus(codigo:number, ativo: boolean): Promise<void> {
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+      .append('Content-Type', 'application/json');
+
+    return this.http.put<void>(`${this.urlBase}/${codigo}/ativo`, ativo, { headers }).toPromise();
+  }
 }
