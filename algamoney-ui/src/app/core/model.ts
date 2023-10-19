@@ -1,5 +1,8 @@
 export class Pessoa {
   codigo?: number;
+  nome?: string;
+  ativo = true;
+  endereco = new Endereco();
 }
 
 export class Categoria {
@@ -16,4 +19,14 @@ export class Lancamento {
   observacao?: string;
   pessoa = new Pessoa();
   categoria = new Categoria();
+}
+
+export class Endereco {
+  logradouro?: string;
+  numero?: string;
+  complemento?: string;
+  bairro?: string;
+  cep?: string;
+  cidade?: string;
+  estado?: string;
 }
