@@ -70,4 +70,38 @@ export class LancamentoService {
 
         return this.http.post<Lancamento>(this.lancamentosUrl, lancamento, { headers }).toPromise();
   }
+
+  atualizar(lancamento: Lancamento): Promise<Lancamento | undefined> {
+      const headers = new HttpHeaders()
+        .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+        .append('Content-type', 'application/json');
+
+      return this.http.put<Lancamento>(`${this.lancamentosUrl}/${lancamento.codigo}`, lancamento, { headers })
+        .toPromise();
+  }
+
+  buscarPorCodigo(codigo: number): Promise<Lancamento | undefined> {
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+
+    return this.http.get<Lancamento>(`${this.lancamentosUrl}/${codigo}`, { headers })
+          .toPromise()
+          .then(lancamento => {
+            this.converterStringsParaDatas([ lancamento! ]);
+
+            return lancamento
+          });
+  }
+
+  private converterStringsParaDatas(lancamentos: Lancamento[]) {
+      for(const lancamento of lancamentos) {
+          let offset = new Date().getTimezoneOffset() * 60000;
+
+          lancamento.dataVencimento = new Date(new Date(lancamento.dataVencimento!).getTime() + offset);
+
+          if(lancamento.dataPagamento) {
+            lancamento.dataPagamento = new Date(new Date(lancamento.dataPagamento).getTime() + offset);
+          }
+      }
+  }
 }
