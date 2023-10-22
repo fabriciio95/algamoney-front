@@ -1,12 +1,12 @@
+import { Lancamento } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CategoriaService } from 'src/app/categorias/categoria.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
-import { Lancamento } from 'src/app/core/model';
 import { PessoaService } from 'src/app/pessoas/pessoa.service';
 import { LancamentoService } from '../lancamento.service';
 import { MessageService } from 'primeng/api';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -29,7 +29,8 @@ export class LancamentoCadastroComponent implements OnInit {
               private lancamentoService: LancamentoService,
               private toastyService: MessageService,
               private errorHandler: ErrorHandlerService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit(): void {
 
@@ -63,12 +64,14 @@ export class LancamentoCadastroComponent implements OnInit {
 
   adicionarLancamento(form: NgForm) {
     this.lancamentoService.adicionar(this.lancamento)
-      .then(() => {
+      .then((lancamento) => {
           this.toastyService.add({ severity: 'success', detail: 'Lançamento adicionado com sucesso!'})
 
-          form.reset();
+          //form.reset();
 
-          this.lancamento = new Lancamento();
+         // this.lancamento = new Lancamento();
+
+         this.router.navigate(['/lancamentos', lancamento?.codigo]);
     }).catch(error => this.errorHandler.handle(error));
   }
 
@@ -96,4 +99,13 @@ export class LancamentoCadastroComponent implements OnInit {
        }).catch(error => this.errorHandler.handle(error));
   }
 
+  novo(ngForm: NgForm) {
+    ngForm.reset();
+
+    setTimeout(() => {
+      this.lancamento = new Lancamento();
+    }, 1);
+
+    this.router.navigate(['/lancamentos/novo'])
+  }
 }
