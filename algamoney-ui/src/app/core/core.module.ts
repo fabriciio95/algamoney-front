@@ -16,6 +16,7 @@ import { LancamentoService } from '../lancamentos/lancamento.service';
 import { PessoaService } from '../pessoas/pessoa.service';
 import { RouterModule } from '@angular/router';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+import { Title } from '@angular/platform-browser';
 
 
 
@@ -57,7 +58,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     PessoaService,
     MessageService,
     ConfirmationService,
-    TranslateService
+    TranslateService,
+    Title
   ]
 })
 export class CoreModule { }
