@@ -74,4 +74,19 @@ export class PessoaService {
 
       return this.http.post<Pessoa>(this.urlBase, pessoa, { headers }).toPromise();
   }
+
+  atualizar(pessoa: Pessoa): Promise<Pessoa | undefined> {
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+      .append('Content-Type', 'application/json');
+
+    return this.http.put<Pessoa>(`${this.urlBase}/${pessoa.codigo}`, pessoa, { headers }).toPromise();
+  }
+
+  buscarPessoa(codigo: number): Promise<Pessoa | undefined> {
+    const headers = new HttpHeaders()
+        .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+
+    return this.http.get<Pessoa>(`${this.urlBase}/${codigo}`, { headers }).toPromise();
+  }
 }

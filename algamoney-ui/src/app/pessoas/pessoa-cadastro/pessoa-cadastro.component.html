@@ -1,10 +1,10 @@
 <div class="container">
 
-  <form #ngForm="ngForm" autocomplete="off" (ngSubmit)="salvar(ngForm)">
+  <form #ngForm="ngForm" autocomplete="off" (ngSubmit)="salvar()">
       <div class="grid">
 
         <div class="col-12">
-          <h1>Nova Pessoa</h1>
+          <h1>{{ editando ? 'Edição de' : 'Nova' }} Pessoa</h1>
         </div>
 
         <div class="col-12 p-fluid">
@@ -73,8 +73,8 @@
 
         <div class="col-12">
             <button type="submit" pButton label="Salvar" [disabled]="ngForm.invalid"></button>
-            <button type="button" pButton class="p-button-info" label="Novo"></button>
-            <a href="javascript:;">Voltar para a pesquisa</a>
+            <button type="button" pButton class="p-button-info" label="Nova" (click)="nova(ngForm)"></button>
+            <a href="javascript:;" routerLink="/pessoas">Voltar para a pesquisa</a>
         </div>
 
       </div>

@@ -54,7 +54,7 @@
             </td>
             <td class="col-acoes">
               <div style="text-align: center;">
-                 <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" ></a>
+                 <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" [routerLink]="['/pessoas', pessoa.codigo]"></a>
                 <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top" (click)="confirmarExclusao(pessoa.codigo)"></button>
               </div>
             </td>
@@ -71,7 +71,7 @@
     </div>
 
     <div class="col-12">
-      <button pButton type="submit" label="Nova Pessoa"></button>
+      <button pButton type="button" label="Nova Pessoa" routerLink="/pessoas/nova"></button>
     </div>
   </div>
 </div>
