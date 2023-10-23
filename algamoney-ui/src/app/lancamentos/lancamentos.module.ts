@@ -18,6 +18,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { LancamentosRoutingModule } from './lancamentos-routing.module';
 
 
 
@@ -42,7 +43,7 @@ import { RouterModule } from '@angular/router';
     DropdownModule,
     InputNumberModule,
     SharedModule,
-    RouterModule
+    LancamentosRoutingModule
   ],
   exports: []
 })
