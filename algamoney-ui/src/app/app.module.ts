@@ -8,6 +8,7 @@ import { PessoasModule } from './pessoas/pessoas.module';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module'
+import { SegurancaModule } from './seguranca/seguranca.module';
 
 
 
@@ -22,7 +23,8 @@ import { AppRoutingModule } from './app-routing.module'
     PessoasModule,
     CoreModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SegurancaModule
   ],
   providers: [],
   bootstrap: [AppComponent]
