@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 
 
 
+
 @NgModule({
   declarations: [
     LoginFormComponent
@@ -17,7 +18,7 @@ import { ButtonModule } from 'primeng/button';
     SegurancaRoutingModule,
     FormsModule,
     InputTextModule,
-    ButtonModule,
+    ButtonModule
   ]
 })
 export class SegurancaModule { }
