@@ -1,5 +1,5 @@
 <div class="container" style="max-width: 400px; margin: auto">
-  <form #ngForm="ngForm" autocomplete="off" (ngSubmit)="login(usuario.value, senha.value)" >
+  <form #ngForm="ngForm" autocomplete="off" (ngSubmit)="login(usuario.value, senha.value); senha.value= '';" >
 
       <div class="grid">
 
