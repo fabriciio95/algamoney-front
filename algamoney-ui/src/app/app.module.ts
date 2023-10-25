@@ -23,8 +23,8 @@ import { SegurancaModule } from './seguranca/seguranca.module';
     PessoasModule,
     CoreModule,
     HttpClientModule,
+    SegurancaModule,
     AppRoutingModule,
-    SegurancaModule
   ],
   providers: [],
   bootstrap: [AppComponent]
