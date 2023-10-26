@@ -20,9 +20,6 @@ export class PessoaService {
 
   pesquisar(filtro: PessoasFiltro): Promise<any> {
 
-    const headers = new HttpHeaders()
-          .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
-
     let params = new HttpParams();
 
     params = params.set('page', filtro.pagina);
@@ -32,7 +29,7 @@ export class PessoaService {
       params = params.set('nome', filtro.nome);
     }
 
-    return this.http.get(`${this.urlBase}`, { headers, params})
+    return this.http.get(`${this.urlBase}`, { params})
         .toPromise()
         .then((response: any) => {
           return {
@@ -44,49 +41,28 @@ export class PessoaService {
 
 
   listarTodas(): Promise<any> {
-     const headers = new HttpHeaders()
-           .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
-
-    return this.http.get(`${this.urlBase}`, { headers })
+    return this.http.get(`${this.urlBase}`)
        .toPromise()
        .then((response: any) => response.content);
   }
 
   excluir(codigo: number): Promise<void>  {
-    const headers = new HttpHeaders()
-           .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
-
-    return this.http.delete<void>(`${this.urlBase}/${codigo}`, { headers }).toPromise();
+    return this.http.delete<void>(`${this.urlBase}/${codigo}`).toPromise();
   }
 
   alterarStatus(codigo:number, ativo: boolean): Promise<void> {
-    const headers = new HttpHeaders()
-      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
-      .append('Content-Type', 'application/json');
-
-    return this.http.put<void>(`${this.urlBase}/${codigo}/ativo`, ativo, { headers }).toPromise();
+    return this.http.put<void>(`${this.urlBase}/${codigo}/ativo`, ativo).toPromise();
   }
 
   adicionar(pessoa: Pessoa): Promise<Pessoa | undefined> {
-    const headers = new HttpHeaders()
-      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
-      .append('Content-Type', 'application/json');
-
-      return this.http.post<Pessoa>(this.urlBase, pessoa, { headers }).toPromise();
+      return this.http.post<Pessoa>(this.urlBase, pessoa).toPromise();
   }
 
   atualizar(pessoa: Pessoa): Promise<Pessoa | undefined> {
-    const headers = new HttpHeaders()
-      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
-      .append('Content-Type', 'application/json');
-
-    return this.http.put<Pessoa>(`${this.urlBase}/${pessoa.codigo}`, pessoa, { headers }).toPromise();
+    return this.http.put<Pessoa>(`${this.urlBase}/${pessoa.codigo}`, pessoa).toPromise();
   }
 
   buscarPessoa(codigo: number): Promise<Pessoa | undefined> {
-    const headers = new HttpHeaders()
-        .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
-
-    return this.http.get<Pessoa>(`${this.urlBase}/${codigo}`, { headers }).toPromise();
+    return this.http.get<Pessoa>(`${this.urlBase}/${codigo}`).toPromise();
   }
 }

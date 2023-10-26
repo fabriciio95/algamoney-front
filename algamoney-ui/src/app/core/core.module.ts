@@ -18,7 +18,8 @@ import { RouterModule } from '@angular/router';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 import { Title } from '@angular/platform-browser';
 import { AuthService } from '../seguranca/auth.service';
-import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { SegurancaModule } from '../seguranca/seguranca.module';
+
 
 
 
@@ -45,14 +46,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
         deps: [HttpClient]
       }
     }),
+    SegurancaModule,
     RouterModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: () => {
-          return '';
-        }
-      }
-    })
   ],
   exports: [
     NavbarComponent,
@@ -70,7 +65,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     TranslateService,
     Title,
     AuthService,
-    JwtHelperService
   ]
 })
 export class CoreModule { }

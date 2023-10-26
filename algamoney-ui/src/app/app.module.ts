@@ -8,7 +8,7 @@ import { PessoasModule } from './pessoas/pessoas.module';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module'
-import { SegurancaModule } from './seguranca/seguranca.module';
+
 
 
 
@@ -23,7 +23,6 @@ import { SegurancaModule } from './seguranca/seguranca.module';
     PessoasModule,
     CoreModule,
     HttpClientModule,
-    SegurancaModule,
     AppRoutingModule,
   ],
   providers: [],

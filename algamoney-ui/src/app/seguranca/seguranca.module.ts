@@ -5,9 +5,12 @@ import { SegurancaRoutingModule } from './seguranca-routing.module';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 
 
-
+export function tokenGetter(): string | null {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -18,7 +21,15 @@ import { ButtonModule } from 'primeng/button';
     SegurancaRoutingModule,
     FormsModule,
     InputTextModule,
-    ButtonModule
-  ]
+    ButtonModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter,
+        allowedDomains: ['localhost:8080'],
+        disallowedRoutes: ['http://localhost:8080/oauth/token']
+      }
+    })
+  ],
+  providers: [JwtHelperService]
 })
 export class SegurancaModule { }
