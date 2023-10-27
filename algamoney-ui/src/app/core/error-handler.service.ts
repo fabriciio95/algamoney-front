@@ -17,6 +17,10 @@ export class ErrorHandlerService {
       if(erro && erro[0]?.mensagemUsuario) {
         msg = erro[0]?.mensagemUsuario
       }
+
+      if(errorResponse.status === 403) {
+        msg = 'Você não tem permissão para executar essa ação';
+      }
     } else if(typeof errorResponse === 'string') {
        msg = errorResponse;
     }

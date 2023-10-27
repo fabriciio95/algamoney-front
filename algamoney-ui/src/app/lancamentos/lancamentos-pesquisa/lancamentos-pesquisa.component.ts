@@ -4,6 +4,7 @@ import { LazyLoadEvent, MessageService, ConfirmationService } from 'primeng/api'
 import { Table } from 'primeng/table';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from 'src/app/seguranca/auth.service';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -18,6 +19,7 @@ export class LancamentosPesquisaComponent implements OnInit {
   @ViewChild('tabela') grid!: Table;
 
   constructor(private lancamentoService: LancamentoService,
+              private authService: AuthService,
               private messageService: MessageService,
               private confirmationService: ConfirmationService,
               private erroHandler: ErrorHandlerService,
@@ -64,5 +66,9 @@ export class LancamentosPesquisaComponent implements OnInit {
 
           this.messageService.add({ severity: 'success', detail: 'Lançamento excluído com sucesso!'})
          }).catch(error => this.erroHandler.handle(error));;
+  }
+
+  naoTemPermissao(permissao: string) {
+    return !this.authService.temPermissao(permissao);
   }
 }
