@@ -4,6 +4,7 @@ import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api'
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { Table } from 'primeng/table';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from 'src/app/seguranca/auth.service';
 
 @Component({
   selector: 'app-pessoas-pesquisa',
@@ -18,6 +19,7 @@ export class PessoasPesquisaComponent implements OnInit {
   @ViewChild('tabela') grid!: Table;
 
   constructor(private pessoaService: PessoaService,
+              private authService: AuthService,
               private confirmationService: ConfirmationService,
               private toastService: MessageService,
               private errorHandler: ErrorHandlerService,
@@ -69,6 +71,10 @@ export class PessoasPesquisaComponent implements OnInit {
 
           this.toastService.add({ severity: 'success', detail: `Pessoa ${novoStatus ? 'ativada' : 'desativada'} com sucesso!`})
         }).catch(error => this.errorHandler.handle(error));
+  }
+
+  naoTemPermissao(permissao: string) {
+    return !this.authService.temPermissao(permissao);
   }
 
 

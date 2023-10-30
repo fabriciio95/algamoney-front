@@ -19,6 +19,7 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component'
 import { Title } from '@angular/platform-browser';
 import { AuthService } from '../seguranca/auth.service';
 import { SegurancaModule } from '../seguranca/seguranca.module';
+import { NaoAutorizadoComponent } from './nao-autorizado.component';
 
 
 
@@ -33,7 +34,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 @NgModule({
   declarations: [
     NavbarComponent,
-    PaginaNaoEncontradaComponent
+    PaginaNaoEncontradaComponent,
+    NaoAutorizadoComponent
   ],
   imports: [
     CommonModule,

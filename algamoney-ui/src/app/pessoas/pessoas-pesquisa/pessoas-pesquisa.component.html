@@ -55,7 +55,7 @@
             <td class="col-acoes">
               <div style="text-align: center;">
                  <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" [routerLink]="['/pessoas', pessoa.codigo]"></a>
-                <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top" (click)="confirmarExclusao(pessoa.codigo)"></button>
+                <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top" (click)="confirmarExclusao(pessoa.codigo)" [disabled]="naoTemPermissao('ROLE_CADASTRAR_PESSOA')"></button>
               </div>
             </td>
           </tr>

@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MoneyHttpInterceptor } from './money-http-interceptor';
+import { AuthGuard } from './auth.guard';
 
 
 export function tokenGetter(): string | null {
@@ -34,7 +35,8 @@ export function tokenGetter(): string | null {
   ],
   providers: [
     JwtHelperService,
-    { provide: HTTP_INTERCEPTORS, useClass: MoneyHttpInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: MoneyHttpInterceptor, multi: true },
+    AuthGuard
   ]
 })
 export class SegurancaModule { }
