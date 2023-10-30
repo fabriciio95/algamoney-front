@@ -1,18 +1,28 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+
+import { NotAuthenticatedError } from './../seguranca/money-http-interceptor';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ErrorHandlerService {
 
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService,
+              private router: Router) { }
 
   handle(errorResponse: any) {
     let msg: string = 'Erro ao processar serviço remoto. Tente novamente.';
 
-    if(errorResponse instanceof HttpErrorResponse && (errorResponse.status > 399 && errorResponse.status < 500)) {
+    if(errorResponse instanceof NotAuthenticatedError) {
+
+      msg = 'Sua sessão expirou!';
+
+      this.router.navigate(['/login']);
+
+    } else if(errorResponse instanceof HttpErrorResponse && (errorResponse.status > 399 && errorResponse.status < 500)) {
       const erro = errorResponse.error;
       if(erro && erro[0]?.mensagemUsuario) {
         msg = erro[0]?.mensagemUsuario
