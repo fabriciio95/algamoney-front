@@ -7,7 +7,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class AuthService {
 
-  oauthTokenUrl = 'http://localhost:8080/oauth/token'
+  oauthTokenUrl = 'http://localhost:8080/oauth/token';
+  tokensRevokeUrl = 'http://localhost:8080/tokens/revoke';
   jwtPayload: any;
 
   constructor(private http: HttpClient,
@@ -83,5 +84,14 @@ export class AuthService {
     if(token) {
       this.armazenarToken(token);
     }
+  }
+
+
+  logout() {
+    return this.http.delete(`${this.tokensRevokeUrl}`, { withCredentials: true }).toPromise()
+      .then(() =>{
+        localStorage.removeItem('token');
+        this.jwtPayload = null;
+      });
   }
 }
