@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Pessoa } from '../core/model';
+import { environment } from 'src/environments/environment';
 
 export class PessoasFiltro {
   nome?: string;
@@ -13,9 +14,11 @@ export class PessoasFiltro {
 })
 export class PessoaService {
 
-  urlBase = 'http://localhost:8080/pessoas';
+  urlBase: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.urlBase = `${environment.apiUrl}/pessoas`;
+   }
 
 
   pesquisar(filtro: PessoasFiltro): Promise<any> {
