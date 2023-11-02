@@ -1,7 +1,7 @@
 import { Title } from '@angular/platform-browser';
 import { Lancamento } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CategoriaService } from 'src/app/categorias/categoria.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { PessoaService } from 'src/app/pessoas/pessoa.service';
@@ -57,7 +57,7 @@ export class LancamentoCadastroComponent implements OnInit {
         tipo: ['RECEITA', Validators.required],
         dataVencimento: [null, Validators.required],
         dataPagamento: [],
-        descricao: [null, [Validators.required, Validators.minLength(5)]],
+        descricao: [null, [ this.validarObrigatoriedade, this.validarTamanhoMinimo(5, 'descricao') ]],
         valor: [null, Validators.required],
         pessoa: this.formBuilder.group({
           codigo: [null, Validators.required],
@@ -69,6 +69,16 @@ export class LancamentoCadastroComponent implements OnInit {
         }),
         observacao: []
       });
+  }
+
+  validarObrigatoriedade(input: FormControl) {
+    return (input.value ? null :  { obrigatoriedade: true});
+  }
+
+  validarTamanhoMinimo(valor: number, formControlName: string) {
+    return (input: FormControl) => {
+        return (!input.value || input.value.length >= valor) ? null : { tamanhoMinimo: { tamanho: valor, valorAtual: this.formulario.get(formControlName)?.value.length }}
+    };
   }
 
   get editando() {
