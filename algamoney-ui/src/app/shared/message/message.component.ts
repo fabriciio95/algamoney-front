@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgModel } from '@angular/forms';
+import { AbstractControl, FormControl, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-message',
@@ -18,11 +18,11 @@ import { NgModel } from '@angular/forms';
 export class MessageComponent  {
 
   @Input() error!: string;
-  @Input('control') ngModel!: NgModel;
+  @Input() control?: AbstractControl | FormControl | null;
   @Input() text!: string;
 
 
   temErro(): boolean {
-    return this.ngModel.control.hasError(this.error) && this.ngModel.control.dirty;
+    return this.control ? this.control.hasError(this.error) && this.control.dirty : true;
   }
 }
