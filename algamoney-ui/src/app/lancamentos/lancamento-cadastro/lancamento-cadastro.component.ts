@@ -1,7 +1,7 @@
 import { Title } from '@angular/platform-browser';
 import { Lancamento } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { CategoriaService } from 'src/app/categorias/categoria.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { PessoaService } from 'src/app/pessoas/pessoa.service';
@@ -24,6 +24,7 @@ export class LancamentoCadastroComponent implements OnInit {
   categorias = [];
   pessoas = [];
   lancamento = new Lancamento();
+  formulario!: FormGroup;
 
   constructor(private categoriaService: CategoriaService,
               private pessoaService: PessoaService,
@@ -32,9 +33,11 @@ export class LancamentoCadastroComponent implements OnInit {
               private errorHandler: ErrorHandlerService,
               private route: ActivatedRoute,
               private router: Router,
-              private title: Title) { }
+              private title: Title,
+              private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.configurarFormulario();
 
     const codigoLancamento = this.route.snapshot.params['codigo'];
 
@@ -46,6 +49,26 @@ export class LancamentoCadastroComponent implements OnInit {
 
     this.carregarCategorias();
     this.carregarPessoas();
+  }
+
+  configurarFormulario() {
+      this.formulario = this.formBuilder.group({
+        codigo: [],
+        tipo: ['RECEITA', Validators.required],
+        dataVencimento: [null, Validators.required],
+        dataPagamento: [],
+        descricao: [null, [Validators.required, Validators.minLength(5)]],
+        valor: [null, Validators.required],
+        pessoa: this.formBuilder.group({
+          codigo: [null, Validators.required],
+          nome: []
+        }),
+        categoria: this.formBuilder.group({
+          codigo: [null, Validators.required],
+          nome: []
+        }),
+        observacao: []
+      });
   }
 
   get editando() {
