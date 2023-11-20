@@ -20,6 +20,7 @@ import { Title } from '@angular/platform-browser';
 import { AuthService } from '../seguranca/auth.service';
 import { SegurancaModule } from '../seguranca/seguranca.module';
 import { NaoAutorizadoComponent } from './nao-autorizado.component';
+import { DashboardService } from '../dashboard/dashboard.service';
 
 
 
@@ -67,6 +68,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     TranslateService,
     Title,
     AuthService,
+    DashboardService
   ]
 })
 export class CoreModule { }

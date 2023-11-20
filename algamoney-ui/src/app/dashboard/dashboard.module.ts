@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { PanelModule } from 'primeng/panel'
 import { ChartModule} from 'primeng/chart'
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ChartModule} from 'primeng/chart'
     DashboardRoutingModule,
     SharedModule,
     PanelModule,
-    ChartModule
+    ChartModule,
+    HttpClientModule
   ]
 })
 export class DashboardModule { }
