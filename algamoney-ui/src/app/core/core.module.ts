@@ -21,6 +21,7 @@ import { AuthService } from '../seguranca/auth.service';
 import { SegurancaModule } from '../seguranca/seguranca.module';
 import { NaoAutorizadoComponent } from './nao-autorizado.component';
 import { DashboardService } from '../dashboard/dashboard.service';
+import { CalendarModule } from 'primeng/calendar';
 
 
 

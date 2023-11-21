@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RelatorioLancamentosComponent implements OnInit {
 
+  periodoInicio: any;
+
+  periodoFim: any;
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+
+  gerar() {}
 
 }
