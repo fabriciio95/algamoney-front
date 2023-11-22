@@ -22,6 +22,7 @@ import { SegurancaModule } from '../seguranca/seguranca.module';
 import { NaoAutorizadoComponent } from './nao-autorizado.component';
 import { DashboardService } from '../dashboard/dashboard.service';
 import { CalendarModule } from 'primeng/calendar';
+import { RelatoriosService } from '../relatorios/relatorios.service';
 
 
 
@@ -70,7 +71,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     TranslateService,
     Title,
     AuthService,
-    DashboardService
+    DashboardService,
+    RelatoriosService
   ]
 })
 export class CoreModule { }

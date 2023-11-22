@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { RelatorioLancamentosComponent } from './relatorio-lancamentos/relatorio-lancamentos.component';
 import { CalendarModule } from 'primeng/calendar';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     RelatoriosRoutingModule,
     SharedModule,
     CalendarModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ]
 })
 export class RelatoriosModule { }
