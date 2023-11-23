@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { PessoaService } from '../pessoa.service';
 import { MessageService } from 'primeng/api';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
-import { Pessoa } from 'src/app/core/model';
+import { Contato, Pessoa } from 'src/app/core/model';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -17,6 +17,7 @@ export class PessoaCadastroComponent  implements OnInit{
   pessoa = new Pessoa();
 
   exibindoFormularioContato = false;
+  contato!: Contato;
 
   constructor(private pessoaService: PessoaService,
               private toastyService: MessageService,
@@ -93,6 +94,7 @@ export class PessoaCadastroComponent  implements OnInit{
 
   prepararNovoContato() {
     this.exibindoFormularioContato = true;
+    this.contato = new Contato();
   }
 
 }
