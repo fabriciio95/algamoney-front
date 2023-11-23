@@ -16,6 +16,8 @@ export class PessoaCadastroComponent  implements OnInit{
 
   pessoa = new Pessoa();
 
+  exibindoFormularioContato = false;
+
   constructor(private pessoaService: PessoaService,
               private toastyService: MessageService,
               private errorHandler: ErrorHandlerService,
@@ -87,6 +89,10 @@ export class PessoaCadastroComponent  implements OnInit{
     }, 1);
 
     this.router.navigate(['/pessoas/nova']);
+  }
+
+  prepararNovoContato() {
+    this.exibindoFormularioContato = true;
   }
 
 }

@@ -12,6 +12,8 @@ import { ButtonModule} from 'primeng/button';
 import { TableModule} from 'primeng/table';
 import { TooltipModule} from 'primeng/tooltip';
 import { InputMaskModule } from 'primeng/inputmask'
+import { DialogModule } from 'primeng/dialog';
+
 import { PessoasRoutingModule } from './pessoas-routing.module';
 
 
@@ -32,7 +34,8 @@ import { PessoasRoutingModule } from './pessoas-routing.module';
     InputMaskModule,
     SharedModule,
     PessoasRoutingModule,
-    PanelModule
+    PanelModule,
+    DialogModule
   ],
   exports: []
 })
