@@ -4,7 +4,7 @@ import { PessoaService } from '../pessoa.service';
 import { MessageService } from 'primeng/api';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { Contato, Pessoa } from 'src/app/core/model';
-import { NgForm } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -97,4 +97,11 @@ export class PessoaCadastroComponent  implements OnInit{
     this.contato = new Contato();
   }
 
+  confirmarContato(frm: NgForm) {
+      this.pessoa.contatos.push({ ...this.contato  });
+
+      this.exibindoFormularioContato = false;
+
+      frm.reset();
+  }
 }
