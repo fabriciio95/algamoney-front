@@ -16,10 +16,6 @@ export class PessoaCadastroComponent  implements OnInit{
 
   pessoa = new Pessoa();
 
-  exibindoFormularioContato = false;
-  contato!: Contato;
-  contatoIndex!: number;
-
   constructor(private pessoaService: PessoaService,
               private toastyService: MessageService,
               private errorHandler: ErrorHandlerService,
@@ -91,32 +87,5 @@ export class PessoaCadastroComponent  implements OnInit{
     }, 1);
 
     this.router.navigate(['/pessoas/nova']);
-  }
-
-  prepararNovoContato() {
-    this.exibindoFormularioContato = true;
-    this.contato = new Contato();
-    this.contatoIndex = this.pessoa.contatos.length;
-  }
-
-  confirmarContato(frm: NgForm) {
-
-      this.pessoa.contatos[this.contatoIndex] = { ...this.contato  };
-
-      this.exibindoFormularioContato = false;
-
-      frm.reset();
-  }
-
-  removerContato(index: number) {
-    this.pessoa.contatos.splice(index, 1);
-  }
-
-  prepararEdicaoContato(contato: Contato, index: number) {
-      this.contato = { ...contato };
-
-      this.exibindoFormularioContato = true;
-
-      this.contatoIndex = index;
   }
 }

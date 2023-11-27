@@ -15,6 +15,7 @@ import { InputMaskModule } from 'primeng/inputmask'
 import { DialogModule } from 'primeng/dialog';
 
 import { PessoasRoutingModule } from './pessoas-routing.module';
+import { PessoaCadastroContatoComponent } from './pessoa-cadastro-contato/pessoa-cadastro-contato.component';
 
 
 
@@ -22,7 +23,8 @@ import { PessoasRoutingModule } from './pessoas-routing.module';
 @NgModule({
   declarations: [
     PessoaCadastroComponent,
-    PessoasPesquisaComponent
+    PessoasPesquisaComponent,
+    PessoaCadastroContatoComponent
   ],
   imports: [
     CommonModule,
