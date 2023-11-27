@@ -108,6 +108,10 @@ export class PessoaCadastroComponent  implements OnInit{
       frm.reset();
   }
 
+  removerContato(index: number) {
+    this.pessoa.contatos.splice(index, 1);
+  }
+
   prepararEdicaoContato(contato: Contato, index: number) {
       this.contato = { ...contato };
 
