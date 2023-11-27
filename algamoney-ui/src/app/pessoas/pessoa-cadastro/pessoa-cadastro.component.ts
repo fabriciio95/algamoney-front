@@ -18,6 +18,7 @@ export class PessoaCadastroComponent  implements OnInit{
 
   exibindoFormularioContato = false;
   contato!: Contato;
+  contatoIndex!: number;
 
   constructor(private pessoaService: PessoaService,
               private toastyService: MessageService,
@@ -95,13 +96,23 @@ export class PessoaCadastroComponent  implements OnInit{
   prepararNovoContato() {
     this.exibindoFormularioContato = true;
     this.contato = new Contato();
+    this.contatoIndex = this.pessoa.contatos.length;
   }
 
   confirmarContato(frm: NgForm) {
-      this.pessoa.contatos.push({ ...this.contato  });
+
+      this.pessoa.contatos[this.contatoIndex] = { ...this.contato  };
 
       this.exibindoFormularioContato = false;
 
       frm.reset();
+  }
+
+  prepararEdicaoContato(contato: Contato, index: number) {
+      this.contato = { ...contato };
+
+      this.exibindoFormularioContato = true;
+
+      this.contatoIndex = index;
   }
 }
