@@ -17,6 +17,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FileUploadModule } from 'primeng/fileupload';
+import { ProgressSpinnerModule} from 'primeng/progressspinner';
 
 
 import { SharedModule } from '../shared/shared.module';
@@ -46,7 +47,8 @@ import { LancamentosRoutingModule } from './lancamentos-routing.module';
     InputNumberModule,
     SharedModule,
     LancamentosRoutingModule,
-    FileUploadModule
+    FileUploadModule,
+    ProgressSpinnerModule
   ],
   exports: []
 })
