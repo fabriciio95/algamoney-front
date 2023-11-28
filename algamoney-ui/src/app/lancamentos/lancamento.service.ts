@@ -84,6 +84,14 @@ export class LancamentoService {
           });
   }
 
+  uploadHeaders() {
+    return new HttpHeaders().append('Authorization', 'Bearer ' + localStorage.getItem('token'));
+  }
+
+  urlUploadAnexo() {
+    return `${this.lancamentosUrl}/anexo`
+  }
+
   private converterStringsParaDatas(lancamentos: Lancamento[]) {
       for(const lancamento of lancamentos) {
           let offset = new Date().getTimezoneOffset() * 60000;

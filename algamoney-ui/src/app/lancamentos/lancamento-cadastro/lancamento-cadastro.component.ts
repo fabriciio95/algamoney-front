@@ -155,4 +155,12 @@ export class LancamentoCadastroComponent implements OnInit {
   atualizarTituloEdicao() {
     this.title.setTitle(`Edição de lançamento: ${this.formulario.get('descricao')?.value}`);
   }
+
+  get uploadHeaders() {
+    return this.lancamentoService.uploadHeaders();
+  }
+
+  get urlUploadAnexo() {
+    return this.lancamentoService.urlUploadAnexo();
+  }
 }

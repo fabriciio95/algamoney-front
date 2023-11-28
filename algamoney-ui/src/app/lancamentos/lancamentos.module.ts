@@ -16,6 +16,9 @@ import { CalendarModule } from 'primeng/calendar';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { FileUploadModule } from 'primeng/fileupload';
+
+
 import { SharedModule } from '../shared/shared.module';
 import { LancamentosRoutingModule } from './lancamentos-routing.module';
 
@@ -42,7 +45,8 @@ import { LancamentosRoutingModule } from './lancamentos-routing.module';
     DropdownModule,
     InputNumberModule,
     SharedModule,
-    LancamentosRoutingModule
+    LancamentosRoutingModule,
+    FileUploadModule
   ],
   exports: []
 })
