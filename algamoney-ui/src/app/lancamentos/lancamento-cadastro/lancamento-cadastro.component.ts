@@ -1,6 +1,6 @@
 import { Title } from '@angular/platform-browser';
 import { Lancamento } from './../../core/model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CategoriaService } from 'src/app/categorias/categoria.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
@@ -8,6 +8,7 @@ import { PessoaService } from 'src/app/pessoas/pessoa.service';
 import { LancamentoService } from '../lancamento.service';
 import { MessageService } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FileUpload } from 'primeng/fileupload';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -26,6 +27,7 @@ export class LancamentoCadastroComponent implements OnInit {
   //lancamento = new Lancamento();
   formulario!: FormGroup;
   uploadEmAndamento = false;
+  @ViewChild('fileUpload') fileUpload!: FileUpload;
 
   constructor(private categoriaService: CategoriaService,
               private pessoaService: PessoaService,
@@ -93,6 +95,12 @@ export class LancamentoCadastroComponent implements OnInit {
          .then(lancamento =>  {
 
          this.formulario.patchValue(lancamento!)
+
+         if(this.formulario.get('urlAnexo')?.value) {
+          this.formulario.patchValue({
+              urlAnexo: this.formulario.get('urlAnexo')?.value.replace('\\\\', 'https://')
+          });
+         }
 
           this.atualizarTituloEdicao();
         })
@@ -177,6 +185,17 @@ export class LancamentoCadastroComponent implements OnInit {
   erroUpload(event: any) {
       this.toastyService.add({ severity: 'error', detail: 'Erro ao tentar enviar anexo'});
       this.uploadEmAndamento = false;
+
+      if(this.fileUpload) {
+        this.fileUpload.clear();
+      }
+  }
+
+  removerAnexo() {
+    this.formulario.patchValue({
+        anexo: null,
+        urlAnexo: null
+    });
   }
 
   get nomeAnexo() {
