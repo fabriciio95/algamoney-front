@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { PessoaService } from '../pessoa.service';
 import { MessageService } from 'primeng/api';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
-import { Contato, Pessoa } from 'src/app/core/model';
+import { Contato, Estado, Pessoa } from 'src/app/core/model';
 import { FormControl, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -15,6 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class PessoaCadastroComponent  implements OnInit{
 
   pessoa = new Pessoa();
+  estados!: any[];
 
   constructor(private pessoaService: PessoaService,
               private toastyService: MessageService,
@@ -28,9 +29,18 @@ export class PessoaCadastroComponent  implements OnInit{
 
       const codigoPessoa = this.activatedRoute.snapshot.params['codigo'];
 
+      this.carregarEstados();
+
       if(codigoPessoa) {
         this.buscarPessoa(codigoPessoa);
       }
+  }
+
+  carregarEstados() {
+    this.pessoaService.listarEstados()
+      .then((estados: any) =>{
+          this.estados = estados.map((uf: any) => ({ label: uf.nome, value: uf.codigo }));
+      }).catch(erro => this.errorHandler.handle(erro));
   }
 
   get editando() {
