@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Pessoa } from '../core/model';
+import { Cidade, Estado, Pessoa } from '../core/model';
 import { environment } from 'src/environments/environment';
 
 export class PessoasFiltro {
@@ -14,10 +14,14 @@ export class PessoasFiltro {
 })
 export class PessoaService {
 
-  urlBase: string;
+  pessoasUrl: string;
+  cidadesUrl: string;
+  estadosUrl: string;
 
   constructor(private http: HttpClient) {
-    this.urlBase = `${environment.apiUrl}/pessoas`;
+    this.pessoasUrl = `${environment.apiUrl}/pessoas`;
+    this.cidadesUrl = `${environment.apiUrl}/cidades`;
+    this.estadosUrl = `${environment.apiUrl}/estados`;
    }
 
 
@@ -32,7 +36,7 @@ export class PessoaService {
       params = params.set('nome', filtro.nome);
     }
 
-    return this.http.get(`${this.urlBase}`, { params})
+    return this.http.get(`${this.pessoasUrl}`, { params})
         .toPromise()
         .then((response: any) => {
           return {
@@ -44,28 +48,39 @@ export class PessoaService {
 
 
   listarTodas(): Promise<any> {
-    return this.http.get(`${this.urlBase}`)
+    return this.http.get(`${this.pessoasUrl}`)
        .toPromise()
        .then((response: any) => response.content);
   }
 
   excluir(codigo: number): Promise<void>  {
-    return this.http.delete<void>(`${this.urlBase}/${codigo}`).toPromise();
+    return this.http.delete<void>(`${this.pessoasUrl}/${codigo}`).toPromise();
   }
 
   alterarStatus(codigo:number, ativo: boolean): Promise<void> {
-    return this.http.put<void>(`${this.urlBase}/${codigo}/ativo`, ativo).toPromise();
+    return this.http.put<void>(`${this.pessoasUrl}/${codigo}/ativo`, ativo).toPromise();
   }
 
   adicionar(pessoa: Pessoa): Promise<Pessoa | undefined> {
-      return this.http.post<Pessoa>(this.urlBase, pessoa).toPromise();
+      return this.http.post<Pessoa>(this.pessoasUrl, pessoa).toPromise();
   }
 
   atualizar(pessoa: Pessoa): Promise<Pessoa | undefined> {
-    return this.http.put<Pessoa>(`${this.urlBase}/${pessoa.codigo}`, pessoa).toPromise();
+    return this.http.put<Pessoa>(`${this.pessoasUrl}/${pessoa.codigo}`, pessoa).toPromise();
   }
 
   buscarPessoa(codigo: number): Promise<Pessoa | undefined> {
-    return this.http.get<Pessoa>(`${this.urlBase}/${codigo}`).toPromise();
+    return this.http.get<Pessoa>(`${this.pessoasUrl}/${codigo}`).toPromise();
   }
+
+  listarEstados() : Promise<Estado | undefined >{
+    return this.http.get<Estado>(`${this.estadosUrl}`).toPromise();
+  }
+
+  pesquisarCidades(codigoEstado: number) : Promise<Cidade[] | undefined >{
+    const params = new HttpParams()
+                    .append('estado', codigoEstado);
+    return this.http.get<Cidade[]>(`${this.cidadesUrl}`, { params }).toPromise();
+  }
+
 }
