@@ -16,6 +16,8 @@ export class PessoaCadastroComponent  implements OnInit{
 
   pessoa = new Pessoa();
   estados!: any[];
+  estadoSelecionado!: any;
+  cidades!: any;
 
   constructor(private pessoaService: PessoaService,
               private toastyService: MessageService,
@@ -42,6 +44,14 @@ export class PessoaCadastroComponent  implements OnInit{
           this.estados = estados.map((uf: any) => ({ label: uf.nome, value: uf.codigo }));
       }).catch(erro => this.errorHandler.handle(erro));
   }
+
+  carregarCidades() {
+    this.pessoaService.pesquisarCidades(this.estadoSelecionado)
+      .then((response: any) => {
+         this.cidades = response.map((c: any) => ({ label: c.nome, value: c.codigo}))
+      })
+  }
+
 
   get editando() {
     return Boolean(this.pessoa.codigo);
