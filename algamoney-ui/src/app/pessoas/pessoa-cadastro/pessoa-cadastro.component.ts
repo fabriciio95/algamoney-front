@@ -48,8 +48,12 @@ export class PessoaCadastroComponent  implements OnInit{
   carregarCidades() {
     this.pessoaService.pesquisarCidades(this.estadoSelecionado)
       .then((response: any) => {
-         this.cidades = response.map((c: any) => ({ label: c.nome, value: c.codigo}))
-      })
+         this.cidades = response.map((c: any) => ({ label: c.nome, value: c.codigo}));
+
+         if(this.estadoSelecionado !== this.pessoa.endereco.cidade.estado.codigo) {
+            this.pessoa.endereco.cidade.codigo = undefined;
+         }
+      }).catch(error => this.errorHandler.handle(error));
   }
 
 
@@ -91,6 +95,13 @@ export class PessoaCadastroComponent  implements OnInit{
      this.pessoaService.buscarPessoa(codigo)
          .then(pessoa => {
            this.pessoa = pessoa!
+
+           this.estadoSelecionado = this.pessoa.endereco.cidade ? this.pessoa.endereco.cidade.estado.codigo : null;
+
+           if(this.estadoSelecionado) {
+              this.carregarCidades();
+           }
+
            this.atualizarTituloPagina();
          }).catch(erro => this.errorHandler.handle(erro));
   }

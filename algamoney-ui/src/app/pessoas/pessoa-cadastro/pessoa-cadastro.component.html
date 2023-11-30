@@ -59,14 +59,20 @@
           <label>Estado</label>
 
           <p-dropdown placeholder="Selecione..." [filter]="true" [options]="estados"
-               [(ngModel)]="estadoSelecionado" name="estadoSelecionado" (onChange)="carregarCidades()" ></p-dropdown>
+               [(ngModel)]="estadoSelecionado" name="estadoSelecionado" (onChange)="carregarCidades()" [required]="true" #estado="ngModel"></p-dropdown>
+
+
+          <app-message [control]="estado.control" error="required" text="Selecione um estado"></app-message>
 
         </div>
 
         <div class="col-12 md:col-6 p-fluid">
           <label>Cidade</label>
 
-          <p-dropdown placeholder="Selecione..." [filter]="true" [options]="cidades"></p-dropdown>
+          <p-dropdown placeholder="Selecione..." [filter]="true" [options]="cidades"
+                [(ngModel)]="pessoa.endereco.cidade.codigo" name="cidade" #cidade="ngModel" [required]="true" [disabled]="!estadoSelecionado"></p-dropdown>
+
+          <app-message [control]="cidade.control" error="required" text="Seleciona uma cidade"></app-message>
 
         </div>
 
