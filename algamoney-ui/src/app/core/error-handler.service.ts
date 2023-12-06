@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/seguranca/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -11,6 +12,7 @@ import { NotAuthenticatedError } from './../seguranca/money-http-interceptor';
 export class ErrorHandlerService {
 
   constructor(private messageService: MessageService,
+              private authService: AuthService,
               private router: Router) { }
 
   handle(errorResponse: any) {
@@ -20,7 +22,7 @@ export class ErrorHandlerService {
 
       msg = 'Sua sessão expirou!';
 
-      this.router.navigate(['/login']);
+      this.authService.login();
 
     } else if(errorResponse instanceof HttpErrorResponse && (errorResponse.status > 399 && errorResponse.status < 500)) {
       const erro = errorResponse.error;

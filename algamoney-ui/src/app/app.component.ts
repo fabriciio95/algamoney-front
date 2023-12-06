@@ -12,8 +12,7 @@ export class AppComponent implements OnInit{
 
   constructor(
     private config: PrimeNGConfig,
-    private translateService: TranslateService,
-    private router: Router
+    private translateService: TranslateService
   ) {}
 
 
@@ -23,8 +22,5 @@ export class AppComponent implements OnInit{
       .subscribe(res => this.config.setTranslation(res));
   }
 
-  exibindoNavbar() {
-    return this.router.url !== '/login';
-  }
 
 }
