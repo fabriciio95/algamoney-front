@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
+import * as CryptoJS from 'crypto-js';
 
 @Injectable({
   providedIn: 'root'
@@ -22,10 +23,16 @@ export class AuthService {
   }
 
   login() {
-      const state = 'abc';
+      const state = this.gerarStringAleatoria(40);
+      const codeVerifier = this.gerarStringAleatoria(128);
+
+      localStorage.setItem('state', state);
+      localStorage.setItem('codeVerifier', codeVerifier);
 
       const challengeMethod = 'S256';
-      const codeChallenge = '0XbgS278K_2KRl54vFUXS5iRFQQfuyI0ChVcRCQj0tM';
+      const codeChallenge = CryptoJS.SHA256(codeVerifier)
+          .toString(CryptoJS.enc.Base64url);
+
       const redirect_uri = environment.oauthCallbackUrl;
 
       const clientId = 'angular';
@@ -92,6 +99,17 @@ export class AuthService {
     }
   }
 
+  private gerarStringAleatoria(tamanho: number) {
+    let resultado = '';
+
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    for(let i = 0; i < tamanho; i++) {
+       resultado += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+
+    return resultado;
+  }
 
   logout() {
     return this.http.delete(`${this.tokensRevokeUrl}`, { withCredentials: true }).toPromise()
