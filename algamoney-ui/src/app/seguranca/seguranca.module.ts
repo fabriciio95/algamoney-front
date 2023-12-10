@@ -9,6 +9,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MoneyHttpInterceptor } from './money-http-interceptor';
 import { AuthGuard } from './auth.guard';
 import { environment } from 'src/environments/environment';
+import { AuthorizedComponent } from './authorized/authorized.component';
 
 
 export function tokenGetter(): string | null {
@@ -17,6 +18,8 @@ export function tokenGetter(): string | null {
 
 @NgModule({
   declarations: [
+  
+    AuthorizedComponent
   ],
   imports: [
     CommonModule,
