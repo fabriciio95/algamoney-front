@@ -11,14 +11,12 @@ export class AuthService {
 
   oauthTokenUrl: string;
   oauthAuthorizeUrl: string;
-  tokensRevokeUrl: string;
   jwtPayload: any;
 
   constructor(private http: HttpClient,
               private jwtHelper: JwtHelperService) {
       this.oauthTokenUrl = `${environment.apiUrl}/oauth2/token`;
       this.oauthAuthorizeUrl = `${environment.apiUrl}/oauth2/authorize`;
-      this.tokensRevokeUrl = `${environment.apiUrl}/tokens/revoke`;
       this.carregarToken();
   }
 
@@ -124,6 +122,10 @@ export class AuthService {
       return this.jwtPayload && this.jwtPayload.authorities.includes(permissao);
   }
 
+  temRefreshToken() : boolean {
+    return localStorage.getItem('refresh_token') != null;
+  }
+
   temQualquerPermissao(roles: Array<string>) {
      for(const role of roles) {
           if(this.temPermissao(role)) {
@@ -163,11 +165,15 @@ export class AuthService {
     return resultado;
   }
 
+  limparAccessToken() {
+    localStorage.removeItem('token');
+    this.jwtPayload = null;
+  }
+
+
   logout() {
-    return this.http.delete(`${this.tokensRevokeUrl}`, { withCredentials: true }).toPromise()
-      .then(() =>{
-        localStorage.removeItem('token');
-        this.jwtPayload = null;
-      });
+   this.limparAccessToken();
+   localStorage.clear();
+   window.location.href = `${environment.apiUrl}/logout?returnTo=${environment.logoutReturnToUrl}`;
   }
 }
